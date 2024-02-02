@@ -1,11 +1,58 @@
-CMakeLists.txt.user
+################################
+# C++ Section
+################################
+
+# Compiled object files
+*.o
+*.obj
+
+# Compiled dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled static libraries
+*.a
+*.lib
+
+# Executables
+*.exe
+
+# CMake build directory
+build/
+
+# CMake generated files
+CMakeFiles/
 CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Testing
-Makefile
-cmake_install.cmake
-install_manifest.txt
-compile_commands.json
-CTestTestfile.cmake
-_deps
+CMakeScripts/
+CMakeLists.txt.user
+
+# Visual Studio Code files
+.vscode/
+
+# macOS specific files
+.DS_Store
+
+# Editor backup files
+*~
+
+
+################################
+# Python Section`
+################################
+# Python Section
+
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Virtual environment
+venv/
+env/
+
+# IDE files
+.idea/
+.vscode/
+
+# Editor backup files
+*~
