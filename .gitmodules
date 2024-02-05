@@ -1,0 +1,3 @@
+[submodule "cpp/studygen"]
+	path = cpp/studygen
+	url = https://github.com/jilei-hao/AVRSPT-StudyGen.git

@@ -36,6 +36,9 @@ set(INCLUDE_DIRS
 # Add any additional compiler flags here
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 
+# Add studyGen project
+add_subdirectory(studygen)
+
 # Create the executable
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})
 
