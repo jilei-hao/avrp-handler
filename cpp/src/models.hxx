@@ -22,9 +22,11 @@ public:
     m_DiasTPEnd = j["dias_tp_end"].get<int>();
   }
 
+  StudyConfig() {}
+
   ~StudyConfig() {}
   StudyConfig(const StudyConfig&) = default;
-  StudyConfig& operator=(const StudyConfig&) = delete;
+  StudyConfig& operator=(const StudyConfig&) = default;
 
   int64_t m_MainImageDSID;
   int m_TPStart;

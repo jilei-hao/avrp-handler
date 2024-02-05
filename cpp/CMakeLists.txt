@@ -23,14 +23,13 @@ FetchContent_MakeAvailable(cpr)
 FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz)
 FetchContent_MakeAvailable(json)
 
-set(LIBRARIES 
-  cpr
-  nlohmann_json::nlohmann_json
-)
+
 
 # Add any additional include directories here
 set(INCLUDE_DIRS
   include
+  src
+  src/modules
 )
 
 # Add any additional compiler flags here
@@ -38,6 +37,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 
 # Add studyGen project
 add_subdirectory(studygen)
+
+set(LIBRARIES 
+  cpr
+  nlohmann_json::nlohmann_json
+  StudyGenAPI
+)
 
 # Create the executable
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS})

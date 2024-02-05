@@ -16,7 +16,7 @@ public:
     : m_Url(url), m_Username(username), m_Password(password) {}
   ~GatewayConfig() {}
   GatewayConfig(const GatewayConfig&) = default;
-  GatewayConfig& operator=(const GatewayConfig&) = delete;
+  GatewayConfig& operator=(const GatewayConfig&) = default;
 
   std::string m_Url;
   std::string m_Username;
