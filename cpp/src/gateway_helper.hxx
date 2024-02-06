@@ -32,7 +32,7 @@ public:
 
   ~GatewayHelper() {}
   GatewayHelper(const GatewayHelper&) = default;
-  GatewayHelper& operator=(const GatewayHelper&) = delete;
+  GatewayHelper& operator=(const GatewayHelper&) = default;
 
   std::vector<HandlerTask> GetTasks()
   {

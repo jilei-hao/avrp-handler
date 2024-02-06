@@ -13,19 +13,19 @@ public:
   AbstractModule() {};
 
   // set study config
-  virtual void set_study_config(const StudyConfig& config) 
+  virtual void SetStudyConfig(const StudyConfig& config) 
   {
     m_config = config;
   }
 
   // download data from the gateway
-  virtual void download_data() = 0;
+  virtual void DownloadData() = 0;
 
   // after downloading data, run the module
-  virtual void run() = 0;
+  virtual void Run() = 0;
 
   // upload result to the gateway
-  virtual void upload_result() = 0;
+  virtual void UploadResult() = 0;
 
 protected:
   StudyConfig m_config;

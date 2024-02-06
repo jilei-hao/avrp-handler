@@ -12,17 +12,17 @@ public:
   StudyGenModule(const StudyGenModule&) = delete;
   StudyGenModule& operator=(const StudyGenModule&) = delete;
 
-  void download_data() override
+  void DownloadData() override
   {
     std::cout << "Downloading data..." << std::endl;
   }
 
-  void run() override
+  void Run() override
   {
     std::cout << "Running module..." << std::endl;
   }
 
-  void upload_result() override
+  void UploadResult() override
   {
     std::cout << "Uploading result..." << std::endl;
   }
