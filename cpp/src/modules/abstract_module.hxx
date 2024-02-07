@@ -1,7 +1,7 @@
 #ifndef ABSTRACT_MODULE_HXX
 #define ABSTRACT_MODULE_HXX
 
-#include "models.hxx"
+#include "study_config.hxx"
 
 class AbstractModule {
 public:
@@ -18,17 +18,23 @@ public:
     m_config = config;
   }
 
-  // download data from the gateway
-  virtual void DownloadData() = 0;
+  virtual void SetGatewayHelper(GatewayHelper *gw) 
+  {
+    m_GatewayHelper = gw;
+  }
 
-  // after downloading data, run the module
+  // run the module
   virtual void Run() = 0;
 
-  // upload result to the gateway
-  virtual void UploadResult() = 0;
-
 protected:
+  // prepare data, config; change module status
+  virtual void Initialize() = 0;
+
+  // upload data, config; change module status
+  virtual void Finalize() = 0;
+
   StudyConfig m_config;
+  GatewayHelper *m_GatewayHelper;
 };
 
 #endif
