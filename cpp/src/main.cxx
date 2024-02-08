@@ -5,7 +5,7 @@
 int main(int argc, char** argv) {
   HandlerEngine engine;
   
-  engine.Run(HandlerParametersBuilder::BuildFromArgs(argc, argv));
+  engine.Run(HandlerParametersBuilder::BuildFromConfigFile(argc, argv));
   
   return 0;
 }

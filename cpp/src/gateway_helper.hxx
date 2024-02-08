@@ -44,27 +44,16 @@ public:
     // parse the json response
     nlohmann::json j = nlohmann::json::parse(r.text);
 
-    // print out the json
-    std::cout << j.dump(4) << std::endl;
-
     std::vector<HandlerTask> tasks;
 
     nlohmann::json taskArr = j["handler_tasks"];
 
     // parse tasks from the array
     for (size_t i = 0; i < taskArr.size(); i++) {
-      std::cout << "---- parsing task " << i << " ----\n";
       auto t = taskArr[i];
-
-      std::cout << "---- json dump: " << std::endl;
-      std::cout << t.dump(4) << std::endl;
 
       int study_id = t["study_id"].get<int>();
       int64_t module_status = t["module_status"].get<int64_t>();
-
-      std::cout << "---- study_id: " << study_id << std::endl;
-      std::cout << "---- module_status: " << module_status << std::endl;
-
       StudyConfig studyConfig(t["study_config"]);
 
       tasks.push_back(HandlerTask(study_id, module_status, studyConfig));

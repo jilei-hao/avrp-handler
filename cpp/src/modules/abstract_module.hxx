@@ -1,7 +1,7 @@
 #ifndef ABSTRACT_MODULE_HXX
 #define ABSTRACT_MODULE_HXX
 
-#include "study_config.hxx"
+#include "handler_task.hxx"
 
 class AbstractModule {
 public:
@@ -13,9 +13,9 @@ public:
   AbstractModule() {};
 
   // set study config
-  virtual void SetStudyConfig(const StudyConfig& config) 
+  virtual void SetTask(const HandlerTask& task) 
   {
-    m_config = config;
+    m_Task = task;
   }
 
   virtual void SetGatewayHelper(GatewayHelper *gw) 
@@ -33,7 +33,7 @@ protected:
   // upload data, config; change module status
   virtual void Finalize() = 0;
 
-  StudyConfig m_config;
+  HandlerTask m_Task;
   GatewayHelper *m_GatewayHelper;
 };
 

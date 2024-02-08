@@ -1,0 +1,8 @@
+{
+  "gateway_url": "http://localhost:1234",
+  "gateway_username:": "example",
+  "gateway_password": "example",
+  "dataserver_url": "http://localhost:2345",
+  "dataserver_username": "example",
+  "dataserver_password": "example"
+}

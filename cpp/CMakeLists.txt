@@ -30,6 +30,7 @@ set(INCLUDE_DIRS
   include
   src
   src/modules
+  studygen/src
 )
 
 # Add any additional compiler flags here

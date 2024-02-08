@@ -18,7 +18,7 @@ public:
   HandlerEngine& operator=(const HandlerEngine&) = delete;
 
   int Run(HandlerParameters params) {
-    GatewayHelper gw(GatewayConfig(params.gatewayUrl, params.username, params.password));
+    GatewayHelper gw(GatewayConfig(params.m_GatewayURL, params.m_GatewayUsername, params.m_GatewayPassword));
     TaskProcessor processor(&gw);
 
     while (true) {

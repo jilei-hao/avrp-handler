@@ -26,7 +26,6 @@ public:
   void DownloadModuleConfigs()
   {
     std::cout << "[TaskProcessor] Downloading module configs..." << std::endl;
-
   }
 
   void FetchTasks()
@@ -51,7 +50,7 @@ public:
     if (m_TaskList.empty())
       return;
 
-    if (m_NumberOfRunningJobs < m_MaxNumberOfJobs)
+    while (m_NumberOfRunningJobs < m_MaxNumberOfJobs && !m_TaskList.empty())
     {
       // pop a task from the list
       HandlerTask task = PopTask();
@@ -60,17 +59,18 @@ public:
         std::cout << "Processing task for study " << task.m_StudyID << std::endl;
 
         // create and run a module in a new thread
-        std::thread([this, task]() {
-          m_NumberOfRunningJobs++;
+        std::thread([this, task]() 
+          {
+            m_NumberOfRunningJobs++;
 
-          AbstractModule *module = GetModuleFromTask(task);
-          module->SetStudyConfig(task.m_Config);
-          module->SetGatewayHelper(m_GatewayHelper);
-          module->Run();
-        
-          delete module;
-          m_NumberOfRunningJobs--;
-        }).detach();
+            AbstractModule *module = GetModuleFromTask(task);
+            module->SetGatewayHelper(m_GatewayHelper);
+            module->Run();
+          
+            delete module;
+            m_NumberOfRunningJobs--;
+          }
+        ).detach();
       }
     }
   }
@@ -108,7 +108,9 @@ private:
   AbstractModule *GetModuleFromTask(const HandlerTask &task)
   {
     std::cout << "[TaskProcessor] Getting the right module to run from a task..." << std::endl;
-    return new StudyGenModule();
+    AbstractModule *ret = new StudyGenModule();
+    ret->SetTask(task);
+    return ret;
   }
 
   std::mutex m_Mutex;

@@ -36,6 +36,9 @@ CMakeLists.txt.user
 # Editor backup files
 *~
 
+# The actual config file
+config.json
+
 
 ################################
 # Python Section`
