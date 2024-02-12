@@ -23,6 +23,11 @@ public:
     m_GatewayHelper = gw;
   }
 
+  virtual void SetDataServerHelper(DataServerHelper *ds) 
+  {
+    m_DataServerHelper = ds;
+  }
+
   // run the module
   virtual void Run() = 0;
 
@@ -35,6 +40,7 @@ protected:
 
   HandlerTask m_Task;
   GatewayHelper *m_GatewayHelper;
+  DataServerHelper *m_DataServerHelper;
 };
 
 #endif

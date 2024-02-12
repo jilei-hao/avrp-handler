@@ -3,9 +3,9 @@
 #include "handler_engine.hxx"
 
 int main(int argc, char** argv) {
+  HandlerParametersBuilder::BuildFromConfigFile(argc, argv);
   HandlerEngine engine;
-  
-  engine.Run(HandlerParametersBuilder::BuildFromConfigFile(argc, argv));
+  engine.Run();
   
   return 0;
 }

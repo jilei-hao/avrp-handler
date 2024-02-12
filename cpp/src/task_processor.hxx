@@ -8,11 +8,13 @@
 #include "study_config.hxx"
 #include "handler_task.hxx"
 #include "gateway_helper.hxx"
+#include "data_server_helper.hxx"
 
 class TaskProcessor
 {
 public:
-  TaskProcessor(GatewayHelper *gw) : m_GatewayHelper(gw) 
+  TaskProcessor(GatewayHelper *gw, DataServerHelper *ds) 
+    : m_GatewayHelper(gw), m_DataServerHelper(ds)
   {
     DownloadModuleConfigs();
   }
@@ -65,6 +67,7 @@ public:
 
             AbstractModule *module = GetModuleFromTask(task);
             module->SetGatewayHelper(m_GatewayHelper);
+            module->SetDataServerHelper(m_DataServerHelper);
             module->Run();
           
             delete module;
@@ -116,6 +119,7 @@ private:
   std::mutex m_Mutex;
   std::list<HandlerTask> m_TaskList;
   GatewayHelper *m_GatewayHelper;
+  DataServerHelper *m_DataServerHelper;
 
   uint32_t m_NumberOfRunningJobs = 0u;
   uint32_t m_MaxNumberOfJobs = 10u;

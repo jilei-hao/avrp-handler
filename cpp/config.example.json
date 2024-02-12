@@ -4,5 +4,6 @@
   "gateway_password": "example",
   "dataserver_url": "http://localhost:2345",
   "dataserver_username": "example",
-  "dataserver_password": "example"
+  "dataserver_password": "example",
+  "work_dir": "/temp"
 }
