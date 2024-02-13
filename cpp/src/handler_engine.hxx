@@ -26,6 +26,7 @@ public:
     std::string workDir = params.getWorkDir();
     std::string downloadDir = params.getDownloadDir();
     std::string uploadDir = params.getUploadDir();
+    std::string logDir = params.getLogDir();
 
     // check if directories exist, if not, create them
     if (!std::filesystem::exists(downloadDir)) {
@@ -39,6 +40,13 @@ public:
       std::cout << "[HandlerEngine] Created upload directory." << std::endl;
     } else {
       std::cout << "[HandlerEngine] Upload directory already exists." << std::endl;
+    }
+
+    if (!std::filesystem::exists(logDir)) {
+      std::filesystem::create_directory(logDir);
+      std::cout << "[HandlerEngine] Created log directory." << std::endl;
+    } else {
+      std::cout << "[HandlerEngine] Log directory already exists." << std::endl;
     }
   }
 

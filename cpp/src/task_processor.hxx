@@ -5,10 +5,15 @@
 #include <list>
 #include <mutex>
 #include <thread>
+#include <chrono>
+#include <streambuf>
+#include <filesystem>
+#include <fstream>
 #include "study_config.hxx"
 #include "handler_task.hxx"
 #include "gateway_helper.hxx"
 #include "data_server_helper.hxx"
+#include "handler_parameters.hxx"
 
 class TaskProcessor
 {
@@ -61,19 +66,34 @@ public:
         std::cout << "Processing task for study " << task.m_StudyID << std::endl;
 
         // create and run a module in a new thread
-        std::thread([this, task]() 
+        AbstractModule *module = GetModuleFromTask(task);
+        if (module)
+        {
+          std::thread([this, task, module]() 
           {
-            m_NumberOfRunningJobs++;
+            // HandlerParameters params = HandlerParameters::getInstance();
+            // std::string logDir = params.getLogDir();
+            // std::string logFolder = logDir + "/" + std::to_string(task.m_StudyID);
+            // std::string timestamp = std::to_string(std::chrono::system_clock::now().time_since_epoch().count());
+            // std::string logFilename = timestamp + ".log";
+            // std::filesystem::create_directory(logFolder);
+            // std::streambuf* oldCoutStreamBuf = std::cout.rdbuf();
+            // std::ofstream logFile(logFolder + "/" + logFilename);
+            // std::cout.rdbuf(logFile.rdbuf());
 
-            AbstractModule *module = GetModuleFromTask(task);
+            m_NumberOfRunningJobs++;
             module->SetGatewayHelper(m_GatewayHelper);
             module->SetDataServerHelper(m_DataServerHelper);
             module->Run();
           
             delete module;
             m_NumberOfRunningJobs--;
+
+            // restore cout buffer
+            // std::cout.rdbuf(oldCoutStreamBuf);
           }
         ).detach();
+        }
       }
     }
   }

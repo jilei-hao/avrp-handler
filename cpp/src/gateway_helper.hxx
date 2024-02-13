@@ -62,6 +62,22 @@ public:
     return tasks;
   }
 
+  void UpdateTaskStatus(int study_id, std::string study_status, int64_t module_status)
+  {
+    std::cout << "[GatewayHelper] Updating task status for study " << study_id << std::endl;
+
+    nlohmann::json j;
+    j["study_id"] = study_id;
+    j["study_status"] = study_status;
+    j["module_status"] = module_status;
+
+    cpr::Response r = cpr::Put(cpr::Url{m_Config.m_Url + "/handler-tasks"}, 
+      cpr::Header{{"Authorization", "Bearer " + m_Token}},
+      cpr::Body{j.dump()},
+      cpr::Header{{"Content-Type", "application/json"}});
+
+    std::cout << "[GatewayHelper] Updated task status for study " << study_id << " with status: " << study_status << std::endl;
+  }
 private:
   void login()
   {

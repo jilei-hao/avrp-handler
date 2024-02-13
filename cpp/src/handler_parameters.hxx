@@ -48,6 +48,10 @@ public:
     return m_WorkDir + "/" + m_UploadFolderName;
   }
 
+  std::string getLogDir() const {
+    return m_WorkDir + "/" + m_LogFolderName;;
+  }
+
   friend class HandlerParametersBuilder;
 private:
   std::string m_GatewayURL;
@@ -58,6 +62,7 @@ private:
 
   const static std::string m_DownloadFolderName;
   const static std::string m_UploadFolderName;
+  const static std::string m_LogFolderName;
 
   // Private constructor to prevent instantiation
   HandlerParameters() {}
@@ -65,6 +70,7 @@ private:
 
 const std::string HandlerParameters::m_DownloadFolderName = "download";
 const std::string HandlerParameters::m_UploadFolderName = "upload";
+const std::string HandlerParameters::m_LogFolderName = "log";
 
 
 class HandlerParametersBuilder {

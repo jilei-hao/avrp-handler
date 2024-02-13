@@ -22,7 +22,7 @@ public:
   {
     std::cout << "[StudyGenModule] Start Running Module..." << std::endl;
     Initialize();
-    std::this_thread::sleep_for(std::chrono::seconds(21));
+    RunStudyGennerator();
     Finalize();
   }
 
@@ -33,12 +33,13 @@ public:
     studygen::StudyGenConfig sgConfig;
     sgConfig.fnImage4D = m_fnMainImage;
     sgConfig.nT =taskConfig.m_TPEnd - taskConfig.m_TPStart + 1;
+    sgConfig.dirOut = m_dirOutput;
 
     // systolic config
     studygen::SegmentationConfig sysSegConfig;
     sysSegConfig.fnRefSeg = m_fnSysSegref;
     sysSegConfig.refTP = taskConfig.m_SysTPRef;
-    for (uint32_t i = taskConfig.m_SysTPStart; i <= taskConfig.m_SysTPEnd; i++)
+    for (int i = taskConfig.m_SysTPStart; i <= taskConfig.m_SysTPEnd; i++)
     {
       if (i == taskConfig.m_SysTPRef)
         continue;
@@ -51,7 +52,7 @@ public:
     studygen::SegmentationConfig diasSegConfig;
     diasSegConfig.fnRefSeg = m_fnDiasSegref;
     diasSegConfig.refTP = taskConfig.m_DiasTPRef;
-    for (uint32_t i = taskConfig.m_DiasTPStart; i <= taskConfig.m_DiasTPEnd; i++)
+    for (int i = taskConfig.m_DiasTPStart; i <= taskConfig.m_DiasTPEnd; i++)
     {
       if (i == taskConfig.m_DiasTPRef)
         continue;
@@ -74,6 +75,8 @@ protected:
     std::cout << "-- main_dsid: " << m_Task.m_Config.m_MainImageDSID << std::endl;
     std::cout << "-- sys_segref_dsid: " << m_Task.m_Config.m_SysSegrefDSID << std::endl;
     std::cout << "-- dias_segref_dsid: " << m_Task.m_Config.m_DiasSegrefDSID << std::endl;
+
+    m_GatewayHelper->UpdateTaskStatus(m_Task.m_StudyID, "processing", m_Task.m_ModuleStatus | 0x00000001);
 
     m_fnMainImage = m_DataServerHelper->GetData(m_Task.m_Config.m_MainImageDSID, "nii.gz");
     m_fnSysSegref = m_DataServerHelper->GetData(m_Task.m_Config.m_SysSegrefDSID, "nii.gz");
