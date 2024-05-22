@@ -36,7 +36,7 @@ public:
 
   std::vector<HandlerTask> GetTasks()
   {
-    std::cout << "[GatewayHelper] Getting tasks..." << std::endl;
+    // std::cout << "[GatewayHelper] Getting tasks..." << std::endl;
 
     cpr::Response r = cpr::Get(cpr::Url{m_Config.m_Url + "/handler-tasks"}, 
       cpr::Header{{"Authorization", "Bearer " + m_Token}});

@@ -52,6 +52,10 @@ public:
     return m_WorkDir + "/" + m_LogFolderName;;
   }
 
+  std::string getLabelConfigFilePath() const {
+    return m_LabelConfigFilePath;
+  }
+
   friend class HandlerParametersBuilder;
 private:
   std::string m_GatewayURL;
@@ -59,6 +63,7 @@ private:
   std::string m_GatewayPassword;
   std::string m_DataServerURL;
   std::string m_WorkDir;
+  std::string m_LabelConfigFilePath;
 
   const static std::string m_DownloadFolderName;
   const static std::string m_UploadFolderName;
@@ -123,6 +128,7 @@ public:
             params->m_GatewayPassword = jsonConfig["gateway_password"];
             params->m_DataServerURL = jsonConfig["dataserver_url"];
             params->m_WorkDir = jsonConfig["work_dir"];
+            params->m_LabelConfigFilePath = jsonConfig["label_configuration_file"];
 
           } else {
             // Throw an exception or provide default values

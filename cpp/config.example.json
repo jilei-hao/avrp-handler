@@ -5,5 +5,6 @@
   "dataserver_url": "http://localhost:2345",
   "dataserver_username": "example",
   "dataserver_password": "example",
-  "work_dir": "/temp"
+  "work_dir": "/temp",
+  "label_configruation_file": "/label_configuration.json"
 }

@@ -8,6 +8,7 @@
 #include "abstract_module.hxx"
 #include "study_generator.h"
 #include "configurations.hxx"
+#include "config_factories.h"
 #include "handler_parameters.hxx"
 
 class StudyGenModule : public AbstractModule
@@ -34,6 +35,9 @@ public:
     sgConfig.fnImage4D = m_fnMainImage;
     sgConfig.nT =taskConfig.m_TPEnd - taskConfig.m_TPStart + 1;
     sgConfig.dirOut = m_dirOutput;
+    std::string fnLabelConfig = HandlerParameters::getInstance().getLabelConfigFilePath();
+    sgConfig.labelConfigMap = 
+      studygen::LabelConfigFactory::CreateFromConfigFile(fnLabelConfig);
 
     // systolic config
     studygen::SegmentationConfig sysSegConfig;
@@ -65,6 +69,7 @@ public:
     studygen::StudyGenerator sg;
     sg.SetStudyGenConfig(sgConfig);
     sg.Run();
+    sg.WriteOutput();
   }
 
 protected:
@@ -85,7 +90,7 @@ protected:
     // create a directory for the study
     HandlerParameters params = HandlerParameters::getInstance();
     m_dirOutput = params.getUploadDir() + "/" + std::to_string(m_Task.m_StudyID);
-    std::filesystem::create_directory(std::to_string(m_Task.m_StudyID));
+    std::filesystem::create_directory(m_dirOutput);
 
     std::cout << "-- data downloaded." << std::endl;
   }

@@ -37,7 +37,7 @@ public:
 
   void FetchTasks()
   {
-    std::cout << "[TaskProcessor] Fetching tasks..." << std::endl;
+    // std::cout << "[TaskProcessor] Fetching tasks..." << std::endl;
     std::lock_guard<std::mutex> lock(m_Mutex);
     std::vector<HandlerTask> tasks = m_GatewayHelper->GetTasks();
     
@@ -45,6 +45,7 @@ public:
     {
       if (!IsTaskInList(task.m_StudyID))
       {
+        std::cout << "[TaskProcessor] Enqueing task for study " << task.m_StudyID << std::endl;
         m_TaskList.push_back(task);
       }
     }
@@ -52,7 +53,7 @@ public:
 
   void Process()
   {
-    std::cout << "[TaskProcessor] Processing tasks..." << std::endl;
+    // std::cout << "[TaskProcessor] Processing tasks..." << std::endl;
 
     if (m_TaskList.empty())
       return;
@@ -63,7 +64,7 @@ public:
       HandlerTask task = PopTask();
       if (task.m_StudyID != 0)
       {
-        std::cout << "Processing task for study " << task.m_StudyID << std::endl;
+        std::cout << "[TaskProcessor] Processing task for study " << task.m_StudyID << std::endl;
 
         // create and run a module in a new thread
         AbstractModule *module = GetModuleFromTask(task);
