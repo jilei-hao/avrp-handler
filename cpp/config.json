@@ -1,0 +1,10 @@
+{
+  "gateway_url": "http://localhost:6060",
+  "gateway_username": "avrpdev",
+  "gateway_password": "avrp@dev",
+  "dataserver_url": "http://localhost:7070",
+  "dataserver_username": "na",
+  "dataserver_password": "na",
+  "work_dir": "/Users/jileihao/dev/avrspt-dev/avrp-handler/build/work_dir",
+  "label_configuration_file": "/Users/jileihao/dev/avrspt-dev/avrp-handler/build/work_dir/example_label_config.json"
+}
