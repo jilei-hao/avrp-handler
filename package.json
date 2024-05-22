@@ -1,0 +1,14 @@
+{
+  "name": "avrp-handler",
+  "version": "1.0.0",
+  "description": "## Algorithm Communication Protocol ### Available Inputs ### Acceptable Output Data Types ### API requirement",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
