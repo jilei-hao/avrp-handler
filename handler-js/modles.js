@@ -1,4 +1,4 @@
-export default function useObjectFactory() {
+export default function useModels() {
   const createModuleDataHeader = (moduleName, studyId, moduleOutputArray) => {
     return {
       moduleName: moduleName,

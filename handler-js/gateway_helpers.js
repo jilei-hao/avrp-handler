@@ -31,13 +31,14 @@ export default async function useGatewayHelpers(url, username, password) {
       if (!res.ok) {
         throw new Error('Error fetching handler tasks!');
       }
+      return res.json();
     }).then((data) => {
       return data;
     });
   };
 
-  const postModuleData = async (moduleDataHeader, ) => {
-    
+  const postModuleData = async (moduleDataFileInfo) => {
+
   };
 
   return {

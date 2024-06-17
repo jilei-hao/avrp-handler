@@ -1,5 +1,7 @@
 import useGatewayHelpers from './gateway_helpers.js';
 
+const numberOfWorkers = 2;
+
 async function RunHandler() {
   console.log("[AVRP-Handler]: Starting handler...");
   console.log("[AVRP-Handler]: authenticating to gateway server...");
